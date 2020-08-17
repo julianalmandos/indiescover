@@ -5,8 +5,16 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    accessToken: '',
+    userInformation: []
   },
   mutations: {
+    setToken(state, token) {
+      state.accessToken = token;
+    },
+    setUserInformation(state, userInformation) {
+      state.userInformation = userInformation;
+    }
   },
   actions: {
   },
