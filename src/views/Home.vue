@@ -25,7 +25,6 @@
 </template>
 
 <script>
-import config from '../config.js'
 import querystring from 'querystring'
 import Vuex from 'vuex'
 
@@ -35,7 +34,7 @@ export default {
     authorizeSpotify() {
       window.location = 'https://accounts.spotify.com/authorize?' +
       querystring.stringify({
-        client_id: config.CLIENT_ID,
+        client_id: process.env.VUE_APP_CLIENT_ID,
         response_type: 'token',
         redirect_uri: 'http://localhost:8080/dashboard',
         scope: 'user-read-recently-played user-top-read',
@@ -51,7 +50,7 @@ export default {
 .landpage {
   display: flex;
   flex-direction: row;
-  height: 100%;
+  min-height: 100vh;
 }
 
 .connect-with-spotify {
@@ -75,7 +74,6 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
 }
 
 .image {
@@ -98,7 +96,7 @@ export default {
 
 .subtitle {
   text-align: center;
-  margin-top: 40px;
+  margin-top: 30px;
   font-size: 1.5rem;
 }
 </style>

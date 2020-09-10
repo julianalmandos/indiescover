@@ -84,7 +84,7 @@ export default {
 
 <style scoped>
 .about {
-  height: 100%;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   background-color: var(--secondary);
@@ -101,8 +101,8 @@ a {
 
 .dashboard {
   width: 70%;
-  height: 100%;
-  margin-top: 40px;
+  min-height: 100vh;
+  margin-top: 80px;
   border-top-left-radius: 50px;
   border-top-right-radius: 50px;
   background-color: var(--backgroundColor);
@@ -124,6 +124,7 @@ ul {
   list-style: none;
   margin-left: 100px;
   flex: 1 1 0px;
+  margin-top: 5px;
 }
 
 .configuration-bar {
@@ -137,7 +138,6 @@ ul {
 .nav-item > a {
   color: var(--black);
   border-bottom: 2px solid transparent;
-  padding: 5px 0;
 }
 
 .nav-item > a:hover {
@@ -173,7 +173,7 @@ ul {
 
 .logo-title {
   font-size: 2rem;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Overpass', sans-serif;
 }
 
 .logo-image {

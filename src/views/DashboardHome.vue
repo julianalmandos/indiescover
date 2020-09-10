@@ -1,27 +1,36 @@
 <template>
   <div class="home">
     <section class="welcome">
-      <h1 class="welcome-message">Welcome, {{this.userInformation.display_name}}!</h1>
-      <h2>It's good to have you back.</h2>
+      <h2 class="welcome-message">Welcome, {{this.userInformation.display_name}}!</h2>
+      <h3 class="welcome-submessage">It's good to have you back.</h3>
     </section>
     <section class="recently-listened-to">
-      <h2>You've been recently listening to...</h2>
-      <div class="recently-listened-to-tracks">
-        <div class="recently-listened-to-track-container" v-for="track in recentlyListenedTracks" :key="track.id">
-          <img class="album-image" :src="getAlbumImageForTrack(track)" :alt="track.track.album.name"/>
-          <h3 class="recently-listened-to-trackname">{{track.track.artists[0].name}}</h3>
-          <h5>{{track.track.name}}</h5>
-        </div>
-      </div>
+      <ContentBox>
+        <template v-slot:title>
+          You've been recently listening to...
+        </template>
+        <template v-slot:content>
+          <RecentlyListenedTo/>
+        </template>
+      </ContentBox>
     </section>
+    <Statistics></Statistics>
   </div>
 </template>
 
 <script>
 import Vuex from "vuex";
 import axios from 'axios';
+import ContentBox from '@/components/ContentBox.vue';
+import RecentlyListenedTo from '@/components/RecentlyListenedTo.vue';
+import Statistics from '@/components/Statistics.vue';
 
 export default {
+  components: {
+    Statistics,
+    ContentBox,
+    RecentlyListenedTo
+  },
   data() {
     return {
         recentlyListenedTracks: []
@@ -81,37 +90,11 @@ export default {
   margin-bottom: 10px;
 }
 
+.welcome-submessage {
+  font-size: 1.5rem;
+}
+
 .recently-listened-to {
-  margin: 100px 80px;
-}
-
-.recently-listened-to-tracks {
-  display: flex;
-  color: var(--black);
-  margin-top: 15px;
-  gap: 15px;
-}
-
-.recently-listened-to > h2 {
-  margin-bottom: 5px;
-}
-
-.recently-listened-to-trackname {
-  margin-top: 10px;
-  color: var(--black);  
-}
-
-.recently-listened-to-track-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.album-image {
-  height: 250px;
-  border-radius: 15px;
-  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  margin: 70px 80px;
 }
 </style>
